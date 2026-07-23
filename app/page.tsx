@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { HeroCarousel } from '@/components/sections/HeroCarousel';
@@ -24,17 +24,7 @@ export default function Home() {
 
   return (
     <>
-      <AnimatePresence>
-        {!splashDone && <SplashScreen onFinish={() => setSplashDone(true)} />}
-      </AnimatePresence>
-
-      {splashDone && (
-        <motion.main
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="min-h-screen bg-background noise-overlay"
-        >
+      <main className="min-h-screen bg-background noise-overlay">
         <Navbar />
         <HeroCarousel />
         <HoursBar />
@@ -55,8 +45,11 @@ export default function Home() {
           <Footer />
         </div>
         <BackToTop />
-      </motion.main>
-      )}
+      </main>
+
+      <AnimatePresence>
+        {!splashDone && <SplashScreen onFinish={() => setSplashDone(true)} />}
+      </AnimatePresence>
     </>
   );
 }
