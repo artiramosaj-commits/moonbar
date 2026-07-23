@@ -28,12 +28,13 @@ export default function Home() {
         {!splashDone && <SplashScreen onFinish={() => setSplashDone(true)} />}
       </AnimatePresence>
 
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={splashDone ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-        className="min-h-screen bg-background noise-overlay"
-      >
+      {splashDone && (
+        <motion.main
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="min-h-screen bg-background noise-overlay"
+        >
         <Navbar />
         <HeroCarousel />
         <HoursBar />
@@ -55,6 +56,7 @@ export default function Home() {
         </div>
         <BackToTop />
       </motion.main>
+      )}
     </>
   );
 }
